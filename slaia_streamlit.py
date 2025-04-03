@@ -33,6 +33,10 @@ if st.button("Enviar"):
             # Envia a entrada do usuário para o modelo
             chat_completion = client.chat.completions.create(
                 messages=[
+                     {
+                        "role": "system",
+                        "content": "Você é SLA, um assistente virtual baseado no modelo LLama 3. Responda de forma educada e clara, e sempre mencione que você é baseado no LLama 3, se necessário."
+                    },
                     {
                         "role": "user",
                         "content": user_input,
@@ -44,7 +48,7 @@ if st.button("Enviar"):
             # Exibe a resposta do modelo
             response = chat_completion.choices[0].message.content
             st.success(f"Resposta do modelo: {response}")
-        st.success(f"SLA diz: {response}")
+         st.success(f"SLA (baseado no LLama 3) diz: {response}")
         except Exception as e:
             st.error(f"Ocorreu um erro: {e}")
 
