@@ -20,7 +20,7 @@ client = Groq(
 # Configuração da interface Streamlit
 st.image("SLA.png", width=500)  # Substitua "logo.png" pelo caminho da sua imagem
 st.write("💬Digite sua mensagem abaixo para interagir com o modelo.💬")
-st.write("👋 Olá! Eu sou o SLA , sou uma ia assistente. Como posso ajudar hoje?")
+
 # Campo de entrada do usuário
 user_input = st.text_input("Você:", placeholder="Digite sua mensagem aqui...")
 
@@ -33,10 +33,6 @@ if st.button("Enviar"):
             # Envia a entrada do usuário para o modelo
             chat_completion = client.chat.completions.create(
                 messages=[
-                     {
-                        "role": "system",
-                        "content": "Você é SLA, um assistente virtual baseado no modelo LLama 3. Responda de forma educada e clara, e sempre mencione que você é baseado no LLama 3, se necessário."
-                    },
                     {
                         "role": "user",
                         "content": user_input,
@@ -47,8 +43,7 @@ if st.button("Enviar"):
 
             # Exibe a resposta do modelo
             response = chat_completion.choices[0].message.content
-            st.success(f"Resposta do modelo: {response}")
-         st.success(f"SLA (baseado no LLama 3) diz: {response}")
+            st.success(f"SLA Bot diz: {response}")
         except Exception as e:
             st.error(f"Ocorreu um erro: {e}")
 
